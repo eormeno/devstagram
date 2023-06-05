@@ -11,6 +11,11 @@ class ImageController extends Controller
     public function store(Request $request)
     {
         try {
+
+            if (!file_exists(public_path('uploads'))) {
+                mkdir(public_path('uploads'), 0777, true);
+            }
+            
             $image = $request->file('file');
 
             $imageName = Str::uuid() . '.' . $image->extension();

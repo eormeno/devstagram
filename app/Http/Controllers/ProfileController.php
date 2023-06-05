@@ -38,6 +38,13 @@ class ProfileController extends Controller
 
         $current_profile_image = $user->profile_image;
 
+        if (!file_exists(public_path('profile_images'))) {
+            mkdir(public_path('profile_images'), 0777, true);
+        }
+
+        // change the profile_image directory rights
+        chmod(public_path('profile_images'), 0777);
+
         if ($request->profile_image) {
             $image = $request->file('profile_image');
 

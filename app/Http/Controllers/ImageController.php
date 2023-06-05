@@ -21,6 +21,7 @@ class ImageController extends Controller
 
             return response()->json(['image' => $imageName]);
         } catch (\Exception $e) {
+            error_log($e->getMessage());
             return response()->json(['error' => $e->getMessage()]);
         }
     }
